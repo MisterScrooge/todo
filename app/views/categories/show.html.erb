@@ -1,0 +1,51 @@
+<% if false %>
+  <p id="notice"><%= notice %></p>
+<% end %>
+
+<h2>
+  <strong>Cat name:</strong>
+  <%= @category.cat_name %>
+</h2>
+
+<h3>Tasks</h3>
+<%= render @category.tasks %>
+
+// <% if false %>
+<% @category.tasks.each do |task| %>
+  <div>
+    <p>
+      <strong>Task: </strong>
+      <%= task.task %>
+    </p>
+    <p><%= link_to 'Delete Task', [task.category, task], method: :delete, data: { confirm: 'Delete task?' } %></p>
+  </div>
+  <p>
+    <strong>Comment: </strong>
+    <%= task.comment %>
+  </p>
+<% end %>
+// <% end %>
+
+<h4>Add task: </h4>
+<%= render 'tasks/form' %>
+
+// <% if false %>
+<%= form_with model: [ @category, @category.tasks.build ] do |form| %>
+  <p>
+    <%= form.label :task %><br>
+    <%= form.text_field :task %>
+  </p>
+  <p>
+    <%= form.label :comment %><br>
+    <%= form.text_area :comment %>
+  </p>
+  <p>
+    <%= form.submit %>
+  </p>
+<% end %>
+// <% end %>
+
+<%= link_to 'Edit task', edit_category_task_path(@category) %> |
+
+<%= link_to 'Edit', edit_category_path(@category) %> |
+<%= link_to 'Back', categories_path %>
