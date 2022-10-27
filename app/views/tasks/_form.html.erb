@@ -8,6 +8,10 @@
     <%= form.text_area :comment %>
   </p>
   <p>
+    <%= form.label "Due date" %><br>
+    <%= form.date_field :due_date %>
+  </p>
+  <p>
     <%= form.submit %>
   </p>
 <% end %>
