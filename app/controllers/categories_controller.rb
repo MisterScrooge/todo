@@ -84,7 +84,7 @@ class CategoriesController < ApplicationController
     def set_category
       # @category = Category.find(params[:id])                        # Find the category id
       @category = current_user.categories.find_by(id: params[:id])    # With regards to user, find cat id
-      redirect_to categories_path, notice: "Not Authorized to edit this category" if @category.nil?
+      # redirect_to categories_path, notice: "Not Authorized to edit this category" if @category.nil?
     end
 
     # Only allow a list of trusted parameters through.

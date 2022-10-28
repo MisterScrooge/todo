@@ -12,23 +12,22 @@
 <h4>Due Someday: </h4>
 <% @category.tasks.each do |task| %>
   <% if task.due_date != Date.current %>
-      <div class="someday">
+      <div class="someday task-bars">
           <div>
               <p>
                   <strong>Task: </strong>
                   <%= task.task %>
               </p>
-              <p><%= link_to 'Delete Task', [task.category, task], method: :delete, data: { confirm: 'Delete task?' } %></p>
           </div>
-          <p>
-              <strong>Comment: </strong>
-              <%= task.comment %>
-          </p>
           <p>
               <strong>Due date: </strong>
               <%= task.due_date %>
           </p>
-          <%= link_to 'Edit task', edit_category_task_path(@category, task) %>
+          <ul>
+            <li class="task-command"><%= link_to 'Show task', category_task_path(@category, task) %></li>
+            <li class="task-command"><%= link_to 'Edit task', edit_category_task_path(@category, task) %></li>
+            <li class="task-command"><%= link_to 'Delete Task', [task.category, task], method: :delete, data: { confirm: 'Delete task?' } %></li>
+          <ul>
       </div>
   <% end %>
 <% end %>

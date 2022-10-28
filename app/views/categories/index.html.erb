@@ -13,14 +13,17 @@
     <div class="container-md category-container">
       <div class="container-sm category-header">
         <h3><%= link_to category.cat_name, category %></h3>
-        <h3><%= category.user_id %></h3>
         <button><%= link_to '🗑️', category, method: :delete, data: { confirm: 'You sure?' } %></button>
       </div>
-      <ul>
-        <li>Checklist of tasks</li>
-        <li>Task 1</li>
-        <li>Task 2</li>
-        <li>Task 3</li>
+      <ul class="category-details">
+        <li>Tasks: <%= category.tasks.length %></li>
+        <li>Status:
+          <% if category.tasks.detect { |task| task.due_date < Date.current } %>
+            <span>🔥 Uh-oh</span>
+          <% else %>
+            <span>🟢 All Good</span>
+          <% end %>
+        </li>
       </ul>
     </div>
   <% end %>
@@ -31,9 +34,11 @@
 
 
 
-<%# scaffold default %>
+<%# Discarded %>
 
 <% if false %>
+
+<%# scaffold default %>
 
 <p id="notice"><%= notice %></p>
 
@@ -62,5 +67,16 @@
 <br>
 
 <%= link_to 'New Category', new_category_path %>
+
+<%# Alert icon initial if statement %>
+
+          <% category.tasks.each do |task| %>
+            <% if task.due_date < Date.current %>
+              <span>🔥</span>
+              <% break %>
+            <% else %>
+              <span><%= task %><%= category.tasks.length %></span>
+            <% end %>
+          <% end %>
 
 <% end %>

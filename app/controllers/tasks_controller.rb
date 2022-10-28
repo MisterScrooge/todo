@@ -1,10 +1,14 @@
 class TasksController < ApplicationController
-    before_action :set_category, only: [ :create, :edit, :update, :destroy ]
+    before_action :set_category, only: [ :create, :show, :edit, :update, :destroy ]
 
     def create
         # @category = current_user.categories.find(params[:category_id])
         @task = @category.tasks.create(task_params)
         redirect_to category_path(@category), notice: "Task successfully created"
+    end
+
+    def show
+        @task = @category.tasks.find(params[:id])
     end
 
     def edit
@@ -23,7 +27,7 @@ class TasksController < ApplicationController
     def destroy
         @task = @category.tasks.find(params[:id])
         @task.destroy
-        redirect_to category_path
+        redirect_to @category
     end
 
     private
