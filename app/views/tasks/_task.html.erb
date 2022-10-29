@@ -1,20 +1,18 @@
-<% if task.due_date == Date.current %>
-    <div class="due-today task-bars">
-        <div>
-            <p>
-                <strong>Task: </strong>
-                <%= task.task %>
-            </p>
-            <p></p>
-        </div>
+<div class="task-bars">
+    <div>
         <p>
-            <strong>Due date: </strong>
-            <%= task.due_date %>
+            <strong>Task: </strong>
+            <%= task.task %>
         </p>
-        <ul>
-            <li class="task-command"><%= link_to 'Show task', category_task_path(@category, task) %></li>
-            <li class="task-command"><%= link_to 'Edit task', edit_category_task_path(@category, task) %></li>
-            <li class="task-command"><%= link_to 'Delete Task', [task.category, task], method: :delete, data: { confirm: 'Delete task?' } %></li>
-        <ul>
+        <p></p>
     </div>
-<% end %>
+    <p>
+        <strong>Due date: </strong>
+        <%= task.due_date %>
+    </p>
+    <ul>
+        <li class="task-command"><%= link_to 'Show task', category_task_path(:category, :task) %></li>
+        <li class="task-command"><%= link_to 'Edit task', edit_category_task_path(:category, :task) %></li>
+        <li class="task-command"><%= link_to 'Delete Task', [task.category, task], method: :delete, data: { confirm: 'Delete task?' } %></li>
+    <ul>
+</div>

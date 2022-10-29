@@ -7,29 +7,21 @@
 </h1>
 
 <h3>Tasks</h3>
+<h4>Overdue: </h4>
+<% @overdue.each do |task| %>
+  <%= render 'tasks/task', task: task %>
+<% end %>
+
+
 <h4>Due Today: </h4>
-<%= render @category.tasks %>
+<% @today.each do |task| %>
+  <%= render 'tasks/task', task: task %>
+<% end %>
+
+
 <h4>Due Someday: </h4>
-<% @category.tasks.each do |task| %>
-  <% if task.due_date != Date.current %>
-      <div class="someday task-bars">
-          <div>
-              <p>
-                  <strong>Task: </strong>
-                  <%= task.task %>
-              </p>
-          </div>
-          <p>
-              <strong>Due date: </strong>
-              <%= task.due_date %>
-          </p>
-          <ul>
-            <li class="task-command"><%= link_to 'Show task', category_task_path(@category, task) %></li>
-            <li class="task-command"><%= link_to 'Edit task', edit_category_task_path(@category, task) %></li>
-            <li class="task-command"><%= link_to 'Delete Task', [task.category, task], method: :delete, data: { confirm: 'Delete task?' } %></li>
-          <ul>
-      </div>
-  <% end %>
+<% @someday.each do |task| %>
+  <%= render 'tasks/task', task: task %>
 <% end %>
 
 <h4>Add task: </h4>
@@ -37,3 +29,34 @@
 
 <%= link_to 'Edit', edit_category_path(@category) %> |
 <%= link_to 'Back', categories_path %>
+
+
+<%# Discarded %>
+
+<% if false %>
+  <h3>Tasks</h3>
+  <h4>Due Today: </h4>
+  <%= render @category.tasks %>
+  <h4>Due Someday: </h4>
+  <% @category.tasks.each do |task| %>
+    <% if task.due_date != Date.current %>
+        <div class="someday task-bars">
+            <div>
+                <p>
+                    <strong>Task: </strong>
+                    <%= task.task %>
+                </p>
+            </div>
+            <p>
+                <strong>Due date: </strong>
+                <%= task.due_date %>
+            </p>
+            <ul>
+              <li class="task-command"><%= link_to 'Show task', category_task_path(@category, task) %></li>
+              <li class="task-command"><%= link_to 'Edit task', edit_category_task_path(@category, task) %></li>
+              <li class="task-command"><%= link_to 'Delete Task', [task.category, task], method: :delete, data: { confirm: 'Delete task?' } %></li>
+            <ul>
+        </div>
+    <% end %>
+  <% end %>
+<% end %>

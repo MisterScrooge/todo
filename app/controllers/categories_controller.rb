@@ -8,6 +8,9 @@ class CategoriesController < ApplicationController
   end
 
   def show
+    @overdue = @category.tasks.where("due_date < ?", Date.current)
+    @today = @category.tasks.where("due_date = ?", Date.current)
+    @someday = @category.tasks.where("due_date > ?", Date.current)
   end
 
   def new
