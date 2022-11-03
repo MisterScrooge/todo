@@ -60,3 +60,6 @@ gem "font-awesome-rails"
 
 # Devise
 gem 'devise'
+
+# No clue but seems needed
+gem 'net-smtp'

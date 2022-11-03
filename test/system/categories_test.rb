@@ -3,6 +3,7 @@ require "application_system_test_case"
 class CategoriesTest < ApplicationSystemTestCase
   setup do
     @category = categories(:one)
+    # sign_in users(:regular)
   end
 
   test "visiting the index" do

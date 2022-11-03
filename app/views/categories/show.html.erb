@@ -1,27 +1,18 @@
-<% if false %>
-  <p id="notice"><%= notice %></p>
-<% end %>
+<h2><strong><%= @category.cat_name %> Tasks</strong></h2>
 
-<h1>
-  <%= @category.cat_name %>
-</h1>
-
-<h3>Tasks</h3>
 <h4>Overdue: </h4>
 <% @overdue.each do |task| %>
-  <%= render 'tasks/task', task: task %>
+  <%= render 'tasks/task', task: task, category: @category %>
 <% end %>
-
 
 <h4>Due Today: </h4>
 <% @today.each do |task| %>
-  <%= render 'tasks/task', task: task %>
+  <%= render 'tasks/task', task: task, category: @category %>
 <% end %>
-
 
 <h4>Due Someday: </h4>
 <% @someday.each do |task| %>
-  <%= render 'tasks/task', task: task %>
+  <%= render 'tasks/task', task: task, category: @category %>
 <% end %>
 
 <h4>Add task: </h4>
@@ -32,6 +23,8 @@
 
 
 <%# Discarded %>
+
+<%# Task content %>
 
 <% if false %>
   <h3>Tasks</h3>
